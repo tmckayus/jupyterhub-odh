@@ -7,7 +7,8 @@ import sys
 import json
 import requests
 
-c.JupyterHub.log_level = 'DEBUG'
+#c.JupyterHub.log_level = 'DEBUG'
+#c.Spawner.debug = True
 # Do not shut down singleuser servers on restart
 c.JupyterHub.cleanup_servers = False
 
@@ -232,7 +233,7 @@ class OpenShiftSpawner(KubeSpawner):
 
   def options_from_form(self, formdata):
     options = {}
-    cm_data = self.single_user_profiles.get_user_profile_cm(self.user.name)
+    cm_data = self.single_user_profiles.user.get(self.user.name)
     options['custom_image'] = cm_data['last_selected_image']
     options['size'] = cm_data['last_selected_size']
     self.gpu_count = cm_data['gpu']
@@ -246,7 +247,7 @@ class OpenShiftSpawner(KubeSpawner):
 def apply_pod_profile(spawner, pod):
   spawner.single_user_profiles.load_profiles(username=spawner.user.name)
   profile = spawner.single_user_profiles.get_merged_profile(spawner.image, user=spawner.user.name, size=spawner.deployment_size)
-  return SingleuserProfiles.apply_pod_profile(spawner, pod, profile, DEFAULT_MOUNT_PATH)
+  return SingleuserProfiles.apply_pod_profile(spawner.user.name, pod, profile, DEFAULT_MOUNT_PATH, spawner.gpu_mode)
 
 def setup_environment(spawner):
     spawner.single_user_profiles.load_profiles(username=spawner.user.name)
