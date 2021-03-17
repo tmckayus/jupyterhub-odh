@@ -103,6 +103,8 @@ c.KubeSpawner.singleuser_extra_containers = [
 
 from oauthenticator.openshift import OpenShiftOAuthenticator
 c.JupyterHub.authenticator_class = OpenShiftOAuthenticator
+c.Authenticator.auto_login = True
+c.Authenticator.enable_auth_state = True
 
 # Override scope as oauthenticator code doesn't set it correctly.
 # Need to lodge a PR against oauthenticator to have this fixed.
