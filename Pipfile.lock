@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cb78c13fa8c67e48e7adbef1d5839bb6a968ac30cb5f4cd0c7ab42ad6aa73a00"
+            "sha256": "03312e7f537035ab5e927fd2263e5b83b921a71606eab9b9dea9ab33d7e4436a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -122,6 +122,9 @@
             "version": "==20.10.2"
         },
         "connexion": {
+            "extras": [
+                "swagger-ui"
+            ],
             "hashes": [
                 "sha256:1ccfac57d4bb7adf4295ba6f5e48f5a1f66057df6a0713417766c9b5235182ee",
                 "sha256:5439e9659a89c4380d93a07acfbf3380d70be4130574de8881e5f0dfec7ad0e2"
@@ -147,10 +150,10 @@
         },
         "decorator": {
             "hashes": [
-                "sha256:d9f2d2863183a3c0df05f4b786f2e6b8752c093b3547a558f287bf3022fd2bf4",
-                "sha256:f2e71efb39412bfd23d878e896a51b07744f2e2250b2e87d158e76828c5ae202"
+                "sha256:6f201a6c4dac3d187352661f508b9364ec8091217442c9478f1f83c003a0f060",
+                "sha256:945d84890bb20cc4a2f4a31fc4311c0c473af65ea318617f13a7257c9a58bc98"
             ],
-            "version": "==5.0.6"
+            "version": "==5.0.7"
         },
         "entrypoints": {
             "hashes": [
@@ -238,11 +241,11 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:c9db46394197244adf2f0b08ec5bc3cf16757e9590b02af1fca085c16c0d600a",
-                "sha256:d2d46ef77ffc85cbf7dac7e81dd663fde71c45326131bea8033b9bad42268ebe"
+                "sha256:2ec0faae539743ae6aaa84b49a169670a465f7f5d64e6add98388cc29fd1f2f6",
+                "sha256:c9356b657de65c53744046fa8f7358afe0714a1af7d570c00c3835c2d724a7c1"
             ],
             "markers": "python_version < '3.8'",
-            "version": "==3.10.0"
+            "version": "==3.10.1"
         },
         "inflection": {
             "hashes": [
@@ -308,11 +311,11 @@
         },
         "jupyterhub-singleuser-profiles": {
             "hashes": [
-                "sha256:b25780c1f03577bcf9a07bef1d62e5586d73f6acd39165885ba0c765d142a4f6",
-                "sha256:d8cc66435c8653a5d87eee438cb4ef583eb5bd62762a704579de8bba26d4361d"
+                "sha256:0154b3ea03d32653aed954c8f8423cdadabc5c90fa0c5ab5029921ac2179e08c",
+                "sha256:b59ae1a7515f1381ad1c1c21d7b1e9ea077c78d311fa8c58f22bc1298c0723c7"
             ],
             "index": "pypi",
-            "version": "==0.2.3"
+            "version": "==0.2.4"
         },
         "kubernetes": {
             "hashes": [
@@ -654,6 +657,13 @@
                 "sha256:fdd1e4ed5d526aa4c7a01ed2157d01f0234eaecdb04b1c3b5084d0902986be9f"
             ],
             "version": "==1.4.7"
+        },
+        "swagger-ui-bundle": {
+            "hashes": [
+                "sha256:f5255f786cde67a2638111f4a7d04355836743198a83c4ecbe815d9fc384b0c8",
+                "sha256:f5691167f2e9f73ecbe8229a89454ae5ea958f90bb0d4583ed7adaae598c4122"
+            ],
+            "version": "==0.0.8"
         },
         "tornado": {
             "hashes": [
