@@ -247,7 +247,8 @@ class OpenShiftSpawner(KubeSpawner):
 def apply_pod_profile(spawner, pod):
   spawner.single_user_profiles.load_profiles(username=spawner.user.name)
   profile = spawner.single_user_profiles.get_merged_profile(spawner.image, user=spawner.user.name, size=spawner.deployment_size)
-  return SingleuserProfiles.apply_pod_profile(spawner.user.name, pod, profile, DEFAULT_MOUNT_PATH, spawner.gpu_mode)
+  gpu_types = spawner.single_user_profiles.get_gpu_types()
+  return SingleuserProfiles.apply_pod_profile(spawner.user.name, pod, profile, gpu_types, DEFAULT_MOUNT_PATH, spawner.gpu_mode)
 
 def setup_environment(spawner):
     spawner.single_user_profiles.load_profiles(username=spawner.user.name)
