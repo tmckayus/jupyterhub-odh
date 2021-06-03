@@ -17,7 +17,8 @@ import uuid
 c.ConfigurableHTTPProxy.auth_token = str(uuid.uuid4())
 jsp_api_dict = {
     'KUBERNETES_SERVICE_HOST': os.environ['KUBERNETES_SERVICE_HOST'],
-    'KUBERNETES_SERVICE_PORT': os.environ['KUBERNETES_SERVICE_PORT']
+    'KUBERNETES_SERVICE_PORT': os.environ['KUBERNETES_SERVICE_PORT'],
+    'JUPYTERHUB_LOGIN_URL': None
 }
 c.JupyterHub.services = [
                             {
@@ -47,6 +48,8 @@ from oauthenticator.openshift import OpenShiftOAuthenticator
 c.JupyterHub.authenticator_class = OpenShiftOAuthenticator
 c.Authenticator.auto_login = True
 c.Authenticator.enable_auth_state = True
+c.OpenShiftOAuthenticator.auth_refresh_age = 300
+c.OpenShiftOAuthenticator.refresh_pre_spawn = True
 
 # Override scope as oauthenticator code doesn't set it correctly.
 # Need to lodge a PR against oauthenticator to have this fixed.
@@ -110,6 +113,7 @@ if not host:
     raise RuntimeError('Cannot calculate external host name for JupyterHub.')
 
 c.OpenShiftOAuthenticator.oauth_callback_url = 'https://%s/hub/oauth_callback' % host
+jsp_api_dict['JUPYTERHUB_LOGIN_URL'] = 'https://%s/hub/login' % host
 
 from html.parser import HTMLParser
 
@@ -188,7 +192,8 @@ class OpenShiftSpawner(KubeSpawner):
 def apply_pod_profile(spawner, pod):
   spawner.single_user_profiles.load_profiles(username=spawner.user.name)
   profile = spawner.single_user_profiles.get_merged_profile(spawner.image, user=spawner.user.name, size=spawner.deployment_size)
-  return SingleuserProfiles.apply_pod_profile(spawner.user.name, pod, profile, DEFAULT_MOUNT_PATH, spawner.gpu_mode)
+  gpu_types = spawner.single_user_profiles.get_gpu_types()
+  return SingleuserProfiles.apply_pod_profile(spawner.user.name, pod, profile, gpu_types, DEFAULT_MOUNT_PATH, spawner.gpu_mode)
 
 def setup_environment(spawner):
     spawner.single_user_profiles.load_profiles(username=spawner.user.name)
