@@ -7,8 +7,8 @@ verify_ssl = true
 
 [packages]
 openshift = "==0.11.2"
-jupyterhub-singleuser-profiles = "==0.4.2"
-oauthenticator = {ref = "d98936da37569b7bb400c6854b07041dce3e7f87",git = "https://github.com/opendatahub-io/oauthenticator.git", editable = true}
+jupyterhub-singleuser-profiles = {ref = "13a93dcd7f28e437e0251ac99017d0b75fcacf2a", git = "https://github.com/red-hat-data-services/jupyterhub-singleuser-profiles.git", editable = true}
+oauthenticator = {ref = "aad14eed654f4d36673c7207aac6e064ebc9c9ec",git = "https://github.com/tmckayus/oauthenticator.git", editable = true}
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"
